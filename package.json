@@ -1,5 +1,5 @@
 {
-  "name": "named-export-ts",
+  "name": "@tom-odb/named-exports",
   "version": "1.0.0",
   "description": "Auto generate index files for a TypeScript project.",
   "main": "index.js",
