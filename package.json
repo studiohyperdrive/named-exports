@@ -19,7 +19,7 @@
     "yargs": "^13.2.2"
   },
   "bin": {
-    "named-export": "./cli.js"
+    "named-exports": "./cli.js"
   },
   "engines": {
     "node": ">=10"
