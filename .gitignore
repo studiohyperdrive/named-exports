@@ -12,3 +12,5 @@ package-lock.json
 *.js.meta
 
 /coverage
+
+dist
