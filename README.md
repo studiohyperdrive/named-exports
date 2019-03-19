@@ -22,7 +22,7 @@ yarn add @tom-odb/named-exports
 ## Usage
 
 ```
-named-exports --dir=src --ext=.ts --fileName=public_api --timeout=10000 --clean=true
+named-exports --dir=src --ext=.ts --fileName=public_api --timeout=10000 --clean=true --indent=space --indentSize=4
 ```
 
 ### Options
@@ -47,6 +47,14 @@ Set a max timeout for the script to finish execution.
 --clean
 Cleanup remaining index files from previous builds.
 (default true)
+
+--indent
+Choose indentation style ("string" or "tab").
+(default string)
+
+--indentSize
+Choose indentation size.
+(default 2)
 ```
 
 ## Contributing (Issue/PR)

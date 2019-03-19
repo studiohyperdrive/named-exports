@@ -15,16 +15,18 @@ const HEADING = (file) => {
   return heading;
 };
 
-const parseExportable = (exportable, file) => {
+const parseExportable = (exportable, file, { indent = "space", indentSize = 2 }) => {
+	const spacer = indent === "space" ? new Array(indentSize).join(" ") : "\t";
+
   switch (exportable) {
     case "default":
-      return `\tdefault as ${fileName(file)}Defaults,`;
+      return `${spacer}default as ${fileName(file)}Defaults,`;
     default:
-      return `\t${exportable},`;
+      return `${spacer}${exportable},`;
   }
 };
 
-module.exports.createIndex = (exportables, dir) => [
+module.exports.createIndex = (exportables, options, dir) => [
   DISCLAIMER,
   "\n\n",
   ...exportables.map(({
@@ -36,7 +38,7 @@ module.exports.createIndex = (exportables, dir) => [
     return [
       HEADING(file),
       "export {",
-      ...matches.map((match) => parseExportable(match, file)),
+      ...matches.map((match) => parseExportable(match, file, options)),
       `} from './${src}';`,
       "\n"
     ].join("\n");

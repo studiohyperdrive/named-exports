@@ -15,7 +15,7 @@ const {
 
 const root = process.cwd();
 
-const cleanIndex = (clean = true, ext, fileName, dir) => {
+const cleanIndex = (clean = true, { ext = ".ts", fileName = "index" } = {}, dir) => {
 	if (!clean) {
 		return Promise.resolve();
 	}
@@ -25,10 +25,10 @@ const cleanIndex = (clean = true, ext, fileName, dir) => {
 	return deleteFile(path.join(root, dir, `${fileName}${ext}`));
 };
 
-const writeIndex = (index, ext, fileName, dir) => {
+const writeIndex = (contents, { ext = ".ts", fileName = "index" } = {}, dir) => {
 	logger.info("Writing index...");
 
-	return writeFile(path.join(root, dir, `${fileName}${ext}`), index, {
+	return writeFile(path.join(root, dir, `${fileName}${ext}`), contents, {
 		json: false
 	});
 };
@@ -38,8 +38,10 @@ module.exports = ({
 	ext = ".ts",
 	clean = true,
 	fileName = "index",
+	indent = "space",
+	indentSize = 2,
 } = {}) => {
-	return cleanIndex(clean, ext, fileName, dir)
+	return cleanIndex(clean, { ext, fileName }, dir)
 		.then(() => findFiles(ext, dir))
 		.then((files) => {
 			logger.info(`Found ${files.length} files.`);
@@ -49,9 +51,9 @@ module.exports = ({
 		.then((exportables) => {
 			logger.info(`Found ${exportables.length} matches.`);
 
-			return createIndex(exportables, dir);
+			return createIndex(exportables, { indent, indentSize }, dir);
 		})
-		.then((contents) => writeIndex(contents, ext, fileName, dir))
+		.then((contents) => writeIndex(contents, { ext, fileName }, dir))
 		.then(() => logger.info("Index created."))
 		.catch((err) => logger.error(err));
 };
