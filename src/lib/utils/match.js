@@ -21,7 +21,7 @@ const matchExports = (input) => {
     const parts = statement
       .replace(/^export\s/, "")
       .replace("abstract", "")
-      .replace(/[(){}[\]]/, "")
+      .replace(/[:(){}[\]]/, "")
       .split(/\s/);
 
     const keywordIndex = parts.findIndex((part) => [
