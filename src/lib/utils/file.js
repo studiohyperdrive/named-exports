@@ -59,13 +59,13 @@ const fileName = (file) => {
     .join("_");
 };
 
-const filePath = (file, root) => {
-  const pathSegments = file.split(path.sep);
-  const rootIndex = pathSegments.indexOf(root);
+const filePath = (file, dir) => {
+	const relDir = dir.charAt(0) === "." ? dir : path.join(".", dir);
+	const absRoot = path.resolve(root, relDir);
+	const absFile = path.resolve(absRoot, file);
+	const pathSegments = absFile.replace(absRoot, "").split(path.sep);
 
-  return pathSegments
-    .slice(rootIndex + 1)
-    .join("/")
+  return path.join(...pathSegments)
     .replace(/\.[a-zA-Z0-9]+$/, "");
 };
 
