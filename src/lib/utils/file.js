@@ -42,11 +42,16 @@ const deleteFile = (file) => new Promise((resolve, reject) => {
   });
 });
 
-const findFiles = (ext, dir) => new Promise((resolve, reject) => {
-  glob(path.join(root, dir, "**", `*${ext}`), (err, files) => {
+const findFiles = ({ ext = ".ts ", ignore }, dir) => new Promise((resolve, reject) => {
+	const options = ignore ? {
+		ignore: `**/*${ignore}${ext}`,
+		cwd: path.join(root, dir),
+	} : {};
+
+  glob(`**/*${ext}`, options, (err, files) => {
     if (err) {
       return reject(err);
-    }
+		}
 
     resolve(files);
   });

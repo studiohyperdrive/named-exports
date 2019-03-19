@@ -22,7 +22,7 @@ yarn add @tom-odb/named-exports
 ## Usage
 
 ```
-named-exports --dir=src --ext=.ts --fileName=public_api --timeout=10000 --clean=true --indent=space --indentSize=4 --silent
+named-exports --dir=src --ext=.ts --ignore=(ignore-this|ignore-that) --fileName=public_api --timeout=10000 --clean=true --indent=space --indentSize=4 --silent
 ```
 
 ### Options
@@ -35,6 +35,10 @@ Set the root dir to generate an index file for. All files will be read recursive
 --ext
 Set the extension of files to match.
 (default .ts)
+
+--ignore
+Ignore pattern passed to [node-glob](https://github.com/isaacs/node-glob), suffixed with provided ext.
+(default (.spec|.test|-spec|-test))
 
 --fileName
 Set the name of the generated file.
