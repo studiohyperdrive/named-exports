@@ -5,7 +5,6 @@ const {
 	findFiles,
 	writeFile
 } = require("./utils/file");
-const logger = require("./utils/log");
 const {
 	findExportablesInFile
 } = require("./exportables");
@@ -15,24 +14,6 @@ const {
 
 const root = process.cwd();
 
-const cleanIndex = (clean = true, { ext = ".ts", fileName = "index" } = {}, dir) => {
-	if (!clean) {
-		return Promise.resolve();
-	}
-
-	logger.info("Cleaning index...");
-
-	return deleteFile(path.join(root, dir, `${fileName}${ext}`));
-};
-
-const writeIndex = (contents, { ext = ".ts", fileName = "index" } = {}, dir) => {
-	logger.info("Writing index...");
-
-	return writeFile(path.join(root, dir, `${fileName}${ext}`), contents, {
-		json: false
-	});
-};
-
 module.exports = ({
 	dir = ".",
 	ext = ".ts",
@@ -40,8 +21,35 @@ module.exports = ({
 	fileName = "index",
 	indent = "space",
 	indentSize = 2,
-} = {}) => {
-	return cleanIndex(clean, { ext, fileName }, dir)
+} = {}, logger) => {
+	const cleanIndex = (clean = true, {
+		ext = ".ts",
+		fileName = "index"
+	} = {}, dir) => {
+		if (!clean) {
+			return Promise.resolve();
+		}
+
+		logger.info("Cleaning index...");
+
+		return deleteFile(path.join(root, dir, `${fileName}${ext}`));
+	};
+
+	const writeIndex = (contents, {
+		ext = ".ts",
+		fileName = "index"
+	} = {}, dir) => {
+		logger.info("Writing index...");
+
+		return writeFile(path.join(root, dir, `${fileName}${ext}`), contents, {
+			json: false
+		});
+	};
+
+	return cleanIndex(clean, {
+			ext,
+			fileName
+		}, dir)
 		.then(() => findFiles(ext, dir))
 		.then((files) => {
 			logger.info(`Found ${files.length} files.`);
@@ -51,9 +59,15 @@ module.exports = ({
 		.then((exportables) => {
 			logger.info(`Found ${exportables.length} matches.`);
 
-			return createIndex(exportables, { indent, indentSize }, dir);
+			return createIndex(exportables, {
+				indent,
+				indentSize
+			}, dir);
 		})
-		.then((contents) => writeIndex(contents, { ext, fileName }, dir))
+		.then((contents) => writeIndex(contents, {
+			ext,
+			fileName
+		}, dir))
 		.then(() => logger.info("Index created."))
 		.catch((err) => logger.error(err));
 };

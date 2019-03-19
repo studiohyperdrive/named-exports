@@ -22,7 +22,7 @@ yarn add @tom-odb/named-exports
 ## Usage
 
 ```
-named-exports --dir=src --ext=.ts --fileName=public_api --timeout=10000 --clean=true --indent=space --indentSize=4
+named-exports --dir=src --ext=.ts --fileName=public_api --timeout=10000 --clean=true --indent=space --indentSize=4 --silent
 ```
 
 ### Options
@@ -55,6 +55,9 @@ Choose indentation style ("string" or "tab").
 --indentSize
 Choose indentation size.
 (default 2)
+
+--silent
+Disable logs.
 ```
 
 ## Contributing (Issue/PR)
