@@ -21,7 +21,7 @@ module.exports = ({
 	fileName = "index",
 	indent = "space",
 	indentSize = 2,
-	ignore = "(.spec|.test|-test|-spec)"
+	ignore = "*.spec|*.test|*-test|*-spec"
 } = {}, logger) => {
 	const cleanIndex = (clean = true, {
 		ext = ".ts",

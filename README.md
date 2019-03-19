@@ -38,7 +38,7 @@ Set the extension of files to match.
 
 --ignore
 Ignore pattern passed to [node-glob](https://github.com/isaacs/node-glob), suffixed with provided ext.
-(default (.spec|.test|-spec|-test))
+(default *.spec|*.test|*-test|*-spec
 
 --fileName
 Set the name of the generated file.
