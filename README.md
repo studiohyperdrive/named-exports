@@ -22,7 +22,7 @@ yarn add @tom-odb/named-exports
 ## Usage
 
 ```
-named-exports --dir=src --ext=.ts --timeout=10000 --clean=true
+named-exports --dir=src --ext=.ts --fileName=public_api --timeout=10000 --clean=true
 ```
 
 ### Options
@@ -35,6 +35,10 @@ Set the root dir to generate an index file for. All files will be read recursive
 --ext
 Set the extension of files to match.
 (default .ts)
+
+--fileName
+Set the name of the generated file.
+(default index)
 
 --timeout
 Set a max timeout for the script to finish execution.

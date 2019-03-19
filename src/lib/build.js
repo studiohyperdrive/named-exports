@@ -15,20 +15,20 @@ const {
 
 const root = process.cwd();
 
-const cleanIndex = (clean = true, ext, dir) => {
+const cleanIndex = (clean = true, ext, fileName, dir) => {
 	if (!clean) {
 		return Promise.resolve();
 	}
 
 	logger.info("Cleaning index...");
 
-	return deleteFile(path.join(root, dir, `index${ext}`));
+	return deleteFile(path.join(root, dir, `${fileName}${ext}`));
 };
 
-const writeIndex = (index, ext, dir) => {
+const writeIndex = (index, ext, fileName, dir) => {
 	logger.info("Writing index...");
 
-	return writeFile(path.join(root, dir, `index${ext}`), index, {
+	return writeFile(path.join(root, dir, `${fileName}${ext}`), index, {
 		json: false
 	});
 };
@@ -37,8 +37,9 @@ module.exports = ({
 	dir = ".",
 	ext = ".ts",
 	clean = true,
+	fileName = "index",
 } = {}) => {
-	return cleanIndex(clean, ext, dir)
+	return cleanIndex(clean, ext, fileName, dir)
 		.then(() => findFiles(ext, dir))
 		.then((files) => {
 			logger.info(`Found ${files.length} files.`);
@@ -50,7 +51,7 @@ module.exports = ({
 
 			return createIndex(exportables, dir);
 		})
-		.then((index) => writeIndex(index, ext, dir))
+		.then((contents) => writeIndex(contents, ext, fileName, dir))
 		.then(() => logger.info("Index created."))
 		.catch((err) => logger.error(err));
 };
