@@ -68,7 +68,8 @@ const filePath = (file, dir) => {
 	const pathSegments = absFile.replace(absRoot, "").split(path.sep);
 
   return path.join(...pathSegments)
-    .replace(/\.[a-zA-Z0-9]+$/, "");
+		.replace(/\.[a-zA-Z0-9]+$/, "")
+		.replace(/\\/g, "/");
 };
 
 module.exports = {
