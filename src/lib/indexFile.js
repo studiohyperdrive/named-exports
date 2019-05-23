@@ -20,7 +20,7 @@ const parseExportable = (exportable, file, { indent = "space", indentSize = 2 })
 
   switch (exportable) {
     case "default":
-      return `${spacer}default as ${fileName(file)}Defaults,`;
+      return `${spacer}default as ${fileName(file)},`;
     default:
       return `${spacer}${exportable},`;
   }
