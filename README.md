@@ -53,8 +53,8 @@ Cleanup remaining index files from previous builds.
 (default true)
 
 --indent
-Choose indentation style ("string" or "tab").
-(default string)
+Choose indentation style ("space" or "tab").
+(default space)
 
 --indentSize
 Choose indentation size.
