@@ -4,7 +4,7 @@ const chalk = require("chalk");
 
 class Logger {
 	constructor({ silent = false } = {}) {
-		this.silent = silent;
+		this.silent = String(silent) === "true";
 		this.error = this.instance("error");
 		this.success = this.instance("success");
 		this.warn = this.instance("warn");
