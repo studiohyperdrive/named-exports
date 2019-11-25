@@ -1,6 +1,6 @@
 {
   "name": "@tom-odb/named-exports",
-  "version": "1.4.4",
+  "version": "1.4.5",
   "description": "Auto generate index files for a TypeScript project.",
   "main": "index.js",
   "typings": "index.d.ts",
