@@ -43,7 +43,7 @@ const deleteFile = (file) => new Promise((resolve, reject) => {
 });
 
 const findFiles = ({ ext = ".ts ", ignore }, dir) => new Promise((resolve, reject) => {
-	const filePattern = ignore ? `!(${ignore})${ext}` : `*${ext}`;
+	const filePattern = ignore ? `!(${ignore}${ext})` : `*!(${ext})`;
 
   glob(path.join(root, dir, `**/${filePattern}`), (err, files) => {
     if (err) {
