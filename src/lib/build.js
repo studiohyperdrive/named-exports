@@ -42,7 +42,9 @@ module.exports = ({
 	} = {}, dir) => {
 		logger.info("Writing index...");
 
-		return writeFile(path.join(root, dir, `${fileName}${ext}`), contents, {
+		const extension = ext.includes('|') ? ext.split('|')[0] : ext;
+
+		return writeFile(path.join(root, dir, `${fileName}${extension}`), contents, {
 			json: false
 		});
 	};
