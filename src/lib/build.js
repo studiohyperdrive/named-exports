@@ -16,16 +16,16 @@ const root = process.cwd();
 
 module.exports = ({
 	dir = ".",
-	ext = ".ts",
+	ext = "ts",
 	clean = true,
 	fileName = "index",
 	indent = "space",
 	indentSize = 2,
-	include = ".ts",
+	include = "ts",
 	exclude= "*.spec|*.test|*-test|*-spec"
 } = {}, logger) => {
 	const cleanIndex = (clean = true, {
-		ext = ".ts",
+		ext = "ts",
 		fileName = "index"
 	} = {}, dir) => {
 		if (!clean) {
@@ -34,16 +34,16 @@ module.exports = ({
 
 		logger.info("Cleaning index...");
 
-		return deleteFile(path.join(root, dir, `${fileName}${ext}`));
+		return deleteFile(path.join(root, dir, `${fileName}.${ext}`));
 	};
 
 	const writeIndex = (contents, {
-		ext = ".ts",
+		ext = "ts",
 		fileName = "index"
 	} = {}, dir) => {
 		logger.info("Writing index...");
 
-		return writeFile(path.join(root, dir, `${fileName}${ext}`), contents, {
+		return writeFile(path.join(root, dir, `${fileName}.${ext}`), contents, {
 			json: false
 		});
 	};

@@ -41,8 +41,8 @@ Exclude pattern passed to [node-glob](https://github.com/isaacs/node-glob), suff
 (default *.spec|*.test|*-test|*-spec)
 
 --include
-Set the extensions of files to match. Include pattern passed to [node-glob](https://github.com/isaacs/node-glob). 
-(default .ts)
+Set the extensions of files to match. Include pattern passed to [node-glob](https://github.com/isaacs/node-glob).
+(default ts|tsx)
 
 --fileName
 Set the name of the generated file.
