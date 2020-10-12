@@ -21,7 +21,8 @@ module.exports = ({
 	fileName = "index",
 	indent = "space",
 	indentSize = 2,
-	ignore = "*.spec|*.test|*-test|*-spec"
+	include = ".ts",
+	exclude= "*.spec|*.test|*-test|*-spec"
 } = {}, logger) => {
 	const cleanIndex = (clean = true, {
 		ext = ".ts",
@@ -42,9 +43,7 @@ module.exports = ({
 	} = {}, dir) => {
 		logger.info("Writing index...");
 
-		const extension = ext.includes('|') ? ext.split('|')[0] : ext;
-
-		return writeFile(path.join(root, dir, `${fileName}${extension}`), contents, {
+		return writeFile(path.join(root, dir, `${fileName}${ext}`), contents, {
 			json: false
 		});
 	};
@@ -53,7 +52,7 @@ module.exports = ({
 			ext,
 			fileName
 		}, dir)
-		.then(() => findFiles({ ext, ignore }, dir))
+		.then(() => findFiles({ ext, exclude, include }, dir))
 		.then((files) => {
 			logger.info(`Found ${files.length} files.`);
 
