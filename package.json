@@ -1,6 +1,6 @@
 {
   "name": "@studiohyperdrive/named-exports",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Auto generate index files for a TypeScript project.",
   "main": "index.js",
   "typings": "index.d.ts",
