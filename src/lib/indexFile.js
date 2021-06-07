@@ -26,21 +26,27 @@ const parseExportable = (exportable, file, { indent = "space", indentSize = 2 })
   }
 };
 
-module.exports.createIndex = (exportables, options, dir) => [
-  DISCLAIMER,
-  "\n\n",
-  ...exportables.map(({
-    file,
-    matches
-  }) => {
-    const src = filePath(file, dir);
+module.exports.createIndex = (exportables, options, dir) => {
+	const exportStatements = exportables
+		.filter(({ matches }) => !!matches.length)
+		.map(({
+			file,
+			matches
+		}) => {
+			const src = filePath(file, dir);
 
-    return [
-      HEADING(file),
-      "export {",
-      ...matches.map((match) => parseExportable(match, file, options)),
-      `} from './${src}';`,
-      "\n"
-    ].join("\n");
-  }),
-].join("");
+			return [
+				HEADING(file),
+				"export {",
+				...matches.map((match) => parseExportable(match, file, options)),
+				`} from './${src}';`,
+				"\n"
+			].join("\n");
+		});
+
+	return [
+		DISCLAIMER,
+		"\n\n",
+		...exportStatements,
+	].join("");
+};
