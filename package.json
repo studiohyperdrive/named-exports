@@ -5,7 +5,7 @@
   "main": "index.js",
   "typings": "index.d.ts",
   "repository": "https://github.com/studiohyperdrive/named-export-ts",
-  "license": "MIT",
+  "license": "ISC",
   "keywords": [],
   "scripts": {
     "build": "babel src --out-dir dist",
