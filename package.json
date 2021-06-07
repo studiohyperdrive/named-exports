@@ -1,10 +1,10 @@
 {
-  "name": "@tom-odb/named-exports",
+  "name": "@studiohyperdrive/named-exports",
   "version": "2.0.2",
   "description": "Auto generate index files for a TypeScript project.",
   "main": "index.js",
   "typings": "index.d.ts",
-  "repository": "https://github.com/tom-odb/named-export-ts",
+  "repository": "https://github.com/studiohyperdrive/named-export-ts",
   "license": "MIT",
   "keywords": [],
   "scripts": {
