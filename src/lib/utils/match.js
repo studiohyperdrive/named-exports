@@ -14,7 +14,7 @@ const matchPattern = (input, pattern, group = 1) => {
 };
 
 const matchExports = (input) => {
-  const statementPattern = /^export((\s([a-zA-Z0-9_$]+)(:|\()?)*)/g;
+  const statementPattern = /^export((\s([a-zA-Z0-9_$]+)(:|\()?)*)/gm;
   const statements = matchPattern(input, statementPattern);
 
   return statements.map((statement) => {
